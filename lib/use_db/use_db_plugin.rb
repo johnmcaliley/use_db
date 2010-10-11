@@ -55,7 +55,7 @@ module UseDbPlugin
       return options
     else
       str = "#{prefix}#{rails_env}#{suffix}"
-      connections = YAML.load(ERB.new(IO.read("/rails_apps/scripts/config/database.yml"), nil, nil, '_use_db_erbout').result)
+      connections = YAML.load(ERB.new(IO.read("#{Rails.root}/config/database.yml"), nil, nil, '_use_db_erbout').result)
       raise "Cannot find database specification.  Configuration '#{str}' expected in config/database.yml" if (connections[str].nil?)      
       return connections[str]
     end
